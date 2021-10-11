@@ -10,14 +10,20 @@ module Simpler
     end
 
     def render(binding)
-      @env['simpler.template_name'] = template_name
-
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+      if text_plain
+        ERB.new(text_plain).result(binding)
+      else
+        @env['simpler.template_name'] = template_name
+        template = File.read(template_path)
+        ERB.new(template).result(binding)
+      end
     end
 
     private
+
+    def text_plain
+      @env['simpler.text_plain']
+    end
 
     def controller
       @env['simpler.controller']
