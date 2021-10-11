@@ -22,7 +22,7 @@ module Simpler
         router_components = path_components(@path)
         request_components = path_components(path)
 
-        return false if request_components.size != router_components.size
+        return false if (request_components.size unless request_components.nil?) != router_components.size
 
         router_components.each_with_index do |component, index|
           if param?(component)
