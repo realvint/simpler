@@ -32,6 +32,10 @@ module Simpler
       @response['Content-Type'] = 'text/html'
     end
 
+    def headers
+      @response
+    end
+
     def status(code)
       @response.status = code
     end
